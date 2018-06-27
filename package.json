@@ -1,0 +1,22 @@
+{
+  "name": "latihan",
+  "version": "1.0.0",
+  "description": "latihan buat mongoose dan mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thirafi98/latihan-siderserver.git"
+  },
+  "author": "Thirafi Wian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thirafi98/latihan-siderserver/issues"
+  },
+  "homepage": "https://github.com/thirafi98/latihan-siderserver#readme",
+  "dependencies": {
+    "express-generator": "^4.16.0"
+  }
+}
