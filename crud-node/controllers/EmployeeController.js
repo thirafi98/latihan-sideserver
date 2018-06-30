@@ -1,21 +1,23 @@
-var mongoose = require('mongoose');
-var emp = require('../models/Employee');
-var empController = {};
+var mongoose = require("mongoose");
+var Employee = require("../models/Employee");
 
-//nampilin isi
-empController.list = function(req, res){
-	emp.find({}).exec(function(err, employees){
-		if (err) {
-			console.log("Error", err);
-		}else{
-			res.render("..views/employees/index", {employees: employees});
-		}
-	});
+var employeeController = {};
+
+// Show list of employees
+employeeController.list = function(req, res) {
+  Employee.find({}).exec(function (err, employees) {
+    if (err) {
+      console.log("Error:", err);
+    }
+    else {
+      res.render("../views/employees/index", {employees: employees});
+    }
+  });
 };
 
-//nampilin isi berdasarkan id
-empController.show = function(req, res){
-	emp.findOne({_id: req.params.id}).exec(function (err, employee) {
+// Show employee by id
+employeeController.show = function(req, res) {
+  Employee.findOne({_id: req.params.id}).exec(function (err, employee) {
     if (err) {
       console.log("Error:", err);
     }
@@ -25,31 +27,29 @@ empController.show = function(req, res){
   });
 };
 
-//Create
-empController.create = function(req,res){
-	res.render("../views/employees/create");
+// Create new employee
+employeeController.create = function(req, res) {
+  res.render("../views/employees/create");
 };
 
-//save
-empController.save = function(req, res){
-	var employee = new emp(req.body);
+// Save new employee
+employeeController.save = function(req, res) {
+  var employee = new Employee(req.body);
 
-	employee.save(function(err) {
-		// body...
-		if (err) {
-			console.log(err);
-			res.render("../views/employees/create");
-		}else{
-			console.log("sukses buat rekord");
-			res.redirect("/employees/show/"+employee._id);
-		}
-	});
+  employee.save(function(err) {
+    if(err) {
+      console.log(err);
+      res.render("../views/employees/create");
+    } else {
+      console.log("Successfully created an employee.");
+      res.redirect("/employees/show/"+employee._id);
+    }
+  });
 };
 
-//edit
-empController.edit = function(req,res) {
-	// body...
-	emp.findOne({_id: req.params.id}).exec(function (err, employee) {
+// Edit an employee
+employeeController.edit = function(req, res) {
+  Employee.findOne({_id: req.params.id}).exec(function (err, employee) {
     if (err) {
       console.log("Error:", err);
     }
@@ -59,9 +59,9 @@ empController.edit = function(req,res) {
   });
 };
 
-//update
-empController.update = function(req,res){
-	emp.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, address: req.body.address, position: req.body.position, salary: req.body.salary }}, { new: true }, function (err, employee) {
+// Update an employee
+employeeController.update = function(req, res) {
+  Employee.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, address: req.body.address, position: req.body.position, salary: req.body.salary }}, { new: true }, function (err, employee) {
     if (err) {
       console.log(err);
       res.render("../views/employees/edit", {employee: req.body});
@@ -70,13 +70,17 @@ empController.update = function(req,res){
   });
 };
 
-//delete
-empController.delete = function(req,res){
-	emp.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, address: req.body.address, position: req.body.position, salary: req.body.salary }}, { new: true }, function (err, employee) {
-    if (err) {
+// Delete an employee
+employeeController.delete = function(req, res) {
+  Employee.remove({_id: req.params.id}, function(err) {
+    if(err) {
       console.log(err);
-      res.render("../views/employees/edit", {employee: req.body});
     }
-    res.redirect("/employees/show/"+employee._id);
+    else {
+      console.log("Employee deleted!");
+      res.redirect("/employees");
+    }
   });
 };
+
+module.exports = employeeController;
