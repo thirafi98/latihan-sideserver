@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>servant Detail</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h3><a href="/servants">servant List</a></h3>
+      <h1>servant Detail</h1>
+      <table>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><%= servant.name %></td>
+          </tr>
+          <tr>
+            <td>Class</td>
+            <td>:</td>
+            <td><%= servant.class %></td>
+          </tr>
+          <tr>
+            <td>Rarity</td>
+            <td>:</td>
+            <td><%= servant.rarity %></td>
+          </tr>
+          <tr>
+            <td>Damage</td>
+            <td>:</td>
+            <td><%= servant.damage %> /Attack</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3><a href="/servants/edit/<%= servant._id%>">EDIT</a></h3>
+      <form action="/servants/delete/<%= servant._id%>" method="post">
+        <button type="submit">DELETE</button>
+      </form>
+    </div>
+  </body>
+</html>

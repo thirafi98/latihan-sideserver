@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/employee')
-  .then(() =>  console.log('connection succesful'))
+mongoose.connect('mongodb://localhost/emp')
+  .then(() =>  console.log('connection succesful at localhost:6660'))
   .catch((err) => console.error(err));
 
 var index = require('./routes/index');

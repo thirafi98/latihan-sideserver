@@ -2,37 +2,38 @@ var express = require('express');
 var router = express.Router();
 var employee = require("../controllers/EmployeeController.js");
 
-// Get all employees
+
+// amnil semua
 router.get('/', function(req, res) {
   employee.list(req, res);
 });
 
-// Get single employee by id
+// berdasarkan id
 router.get('/show/:id', function(req, res) {
   employee.show(req, res);
 });
 
-// Create employee
+// buat
 router.get('/create', function(req, res) {
   employee.create(req, res);
 });
 
-// Save employee
+// simpan
 router.post('/save', function(req, res) {
   employee.save(req, res);
 });
 
-// Edit employee
+// Edit
 router.get('/edit/:id', function(req, res) {
   employee.edit(req, res);
 });
 
-// Edit update
+// update
 router.post('/update/:id', function(req, res) {
   employee.update(req, res);
 });
 
-// Edit delete
+// dhapus
 router.post('/delete/:id', function(req, res, next) {
   employee.delete(req, res);
 });

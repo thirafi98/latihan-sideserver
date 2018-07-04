@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Servants List</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h3><a href="/servants/create">Create Servants</a></h3>
+      <h1>Servants List</h1>
+      <% if(servants.length>0) { %>
+      <table class="list-table">
+        <thead>
+          <tr>
+            <th>Servants Name</th>
+            <th>Servant Class</th>
+            <th>Rarity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i<servants.length;i++) { %>
+            <tr>
+              <td><a href="/servants/show/<%= servants[i]._id%>"><%= servants[i].name%></a></td>
+              <td><%= servants[i].class%></td>
+              <td><%= servants[i].rarity%></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% } else { %>
+        <div>No servants found.</div>
+      <% } %>
+    </div>
+  </body>
+</html>

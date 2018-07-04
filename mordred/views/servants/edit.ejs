@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit servant</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h3><a href="/servants">Employee List</a></h3>
+      <h1>Edit Employee</h1>
+      <form action="/servants/update/<%= servant._id%>" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td><input type="text" name="name" value="<%= servant.name %>" /></td>
+            </tr>
+            <tr>
+              <td>Class</td>
+              <td><input type="text" name="class" value="<%= servant.class %>" /></td>
+            </tr>
+            <tr>
+              <td>Rarity</td>
+              <td><input type="text" name="rarity" value="<%= servant.rarity %>" /></td>
+            </tr>
+            <tr>
+              <td>Damage</td>
+              <td><input type="number" name="damage" value="<%= servant.damage %>" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Update</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>
